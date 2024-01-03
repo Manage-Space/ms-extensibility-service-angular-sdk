@@ -120,28 +120,15 @@ export class DefaultService {
      * Upload a file.
      * Endpoint to upload a file(custom step).
      * @param file The ZIP file to be uploaded
-     * @param projectName The name of the project to be uploaded
-     * @param description The description of the executable code.
-     * @param isPublic Is the code public or private.
-     * @param code Code for the project
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public _import(file: Blob, projectName: string, description: string, isPublic: string, code?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<Import200Response>;
-    public _import(file: Blob, projectName: string, description: string, isPublic: string, code?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<Import200Response>>;
-    public _import(file: Blob, projectName: string, description: string, isPublic: string, code?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<Import200Response>>;
-    public _import(file: Blob, projectName: string, description: string, isPublic: string, code?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
+    public _import(file: Blob, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<Import200Response>;
+    public _import(file: Blob, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpResponse<Import200Response>>;
+    public _import(file: Blob, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<HttpEvent<Import200Response>>;
+    public _import(file: Blob, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1', context?: HttpContext}): Observable<any> {
         if (file === null || file === undefined) {
             throw new Error('Required parameter file was null or undefined when calling _import.');
-        }
-        if (projectName === null || projectName === undefined) {
-            throw new Error('Required parameter projectName was null or undefined when calling _import.');
-        }
-        if (description === null || description === undefined) {
-            throw new Error('Required parameter description was null or undefined when calling _import.');
-        }
-        if (isPublic === null || isPublic === undefined) {
-            throw new Error('Required parameter isPublic was null or undefined when calling _import.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -191,18 +178,6 @@ export class DefaultService {
 
         if (file !== undefined) {
             localVarFormParams = localVarFormParams.append('file', <any>file) as any || localVarFormParams;
-        }
-        if (projectName !== undefined) {
-            localVarFormParams = localVarFormParams.append('projectName', <any>projectName) as any || localVarFormParams;
-        }
-        if (code !== undefined) {
-            localVarFormParams = localVarFormParams.append('code', <any>code) as any || localVarFormParams;
-        }
-        if (description !== undefined) {
-            localVarFormParams = localVarFormParams.append('description', <any>description) as any || localVarFormParams;
-        }
-        if (isPublic !== undefined) {
-            localVarFormParams = localVarFormParams.append('isPublic', <any>isPublic) as any || localVarFormParams;
         }
 
         let responseType_: 'text' | 'json' | 'blob' = 'json';
