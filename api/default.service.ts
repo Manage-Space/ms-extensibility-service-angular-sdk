@@ -21,6 +21,14 @@ import { Observable }                                        from 'rxjs';
 // @ts-ignore
 import { BadRequestError400Response } from '../model/badRequestError400Response';
 // @ts-ignore
+import { CreateExtensibilityFunction200Response } from '../model/createExtensibilityFunction200Response';
+// @ts-ignore
+import { CreateExtensibilityFunctionRequestDto } from '../model/createExtensibilityFunctionRequestDto';
+// @ts-ignore
+import { ExecuteRun200Response } from '../model/executeRun200Response';
+// @ts-ignore
+import { ExecuteRunRequest } from '../model/executeRunRequest';
+// @ts-ignore
 import { ForbiddenError403Response } from '../model/forbiddenError403Response';
 // @ts-ignore
 import { Import200Response } from '../model/import200Response';
@@ -196,6 +204,168 @@ export class DefaultService {
             {
                 context: localVarHttpContext,
                 body: localVarConvertFormParamsToString ? localVarFormParams.toString() : localVarFormParams,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Create ext function meta data for your organization workflows.
+     * Create ext function meta data for your organization workflows.
+     * @param orgId The Organization ID
+     * @param createExtensibilityFunctionRequestDto 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public createExtensibilityFunction(orgId: string, createExtensibilityFunctionRequestDto: CreateExtensibilityFunctionRequestDto, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1' | 'application/json', context?: HttpContext}): Observable<CreateExtensibilityFunction200Response>;
+    public createExtensibilityFunction(orgId: string, createExtensibilityFunctionRequestDto: CreateExtensibilityFunctionRequestDto, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1' | 'application/json', context?: HttpContext}): Observable<HttpResponse<CreateExtensibilityFunction200Response>>;
+    public createExtensibilityFunction(orgId: string, createExtensibilityFunctionRequestDto: CreateExtensibilityFunctionRequestDto, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1' | 'application/json', context?: HttpContext}): Observable<HttpEvent<CreateExtensibilityFunction200Response>>;
+    public createExtensibilityFunction(orgId: string, createExtensibilityFunctionRequestDto: CreateExtensibilityFunctionRequestDto, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1' | 'application/json', context?: HttpContext}): Observable<any> {
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling createExtensibilityFunction.');
+        }
+        if (createExtensibilityFunctionRequestDto === null || createExtensibilityFunctionRequestDto === undefined) {
+            throw new Error('Required parameter createExtensibilityFunctionRequestDto was null or undefined when calling createExtensibilityFunction.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (bearer) required
+        localVarCredential = this.configuration.lookupCredential('bearer');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json;v=1',
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/extensibility/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/extensibility-functions`;
+        return this.httpClient.request<CreateExtensibilityFunction200Response>('post', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                body: createExtensibilityFunctionRequestDto,
+                responseType: <any>responseType_,
+                withCredentials: this.configuration.withCredentials,
+                headers: localVarHeaders,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+    /**
+     * Create meta data for your extensibility functions.
+     * Create meta data for your extensibility functions.
+     * @param orgId The Organization ID
+     * @param executeRunRequest 
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public executeRun(orgId: string, executeRunRequest: ExecuteRunRequest, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1' | 'application/json', context?: HttpContext}): Observable<ExecuteRun200Response>;
+    public executeRun(orgId: string, executeRunRequest: ExecuteRunRequest, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1' | 'application/json', context?: HttpContext}): Observable<HttpResponse<ExecuteRun200Response>>;
+    public executeRun(orgId: string, executeRunRequest: ExecuteRunRequest, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1' | 'application/json', context?: HttpContext}): Observable<HttpEvent<ExecuteRun200Response>>;
+    public executeRun(orgId: string, executeRunRequest: ExecuteRunRequest, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json;v&#x3D;1' | 'application/json', context?: HttpContext}): Observable<any> {
+        if (orgId === null || orgId === undefined) {
+            throw new Error('Required parameter orgId was null or undefined when calling executeRun.');
+        }
+        if (executeRunRequest === null || executeRunRequest === undefined) {
+            throw new Error('Required parameter executeRunRequest was null or undefined when calling executeRun.');
+        }
+
+        let localVarHeaders = this.defaultHeaders;
+
+        let localVarCredential: string | undefined;
+        // authentication (bearer) required
+        localVarCredential = this.configuration.lookupCredential('bearer');
+        if (localVarCredential) {
+            localVarHeaders = localVarHeaders.set('Authorization', 'Bearer ' + localVarCredential);
+        }
+
+        let localVarHttpHeaderAcceptSelected: string | undefined = options && options.httpHeaderAccept;
+        if (localVarHttpHeaderAcceptSelected === undefined) {
+            // to determine the Accept header
+            const httpHeaderAccepts: string[] = [
+                'application/json;v=1',
+                'application/json'
+            ];
+            localVarHttpHeaderAcceptSelected = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        }
+        if (localVarHttpHeaderAcceptSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Accept', localVarHttpHeaderAcceptSelected);
+        }
+
+        let localVarHttpContext: HttpContext | undefined = options && options.context;
+        if (localVarHttpContext === undefined) {
+            localVarHttpContext = new HttpContext();
+        }
+
+
+        // to determine the Content-Type header
+        const consumes: string[] = [
+            'application/json'
+        ];
+        const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+        if (httpContentTypeSelected !== undefined) {
+            localVarHeaders = localVarHeaders.set('Content-Type', httpContentTypeSelected);
+        }
+
+        let responseType_: 'text' | 'json' | 'blob' = 'json';
+        if (localVarHttpHeaderAcceptSelected) {
+            if (localVarHttpHeaderAcceptSelected.startsWith('text')) {
+                responseType_ = 'text';
+            } else if (this.configuration.isJsonMime(localVarHttpHeaderAcceptSelected)) {
+                responseType_ = 'json';
+            } else {
+                responseType_ = 'blob';
+            }
+        }
+
+        let localVarPath = `/extensibility/orgs/${this.configuration.encodeParam({name: "orgId", value: orgId, in: "path", style: "simple", explode: false, dataType: "string", dataFormat: undefined})}/execute-run`;
+        return this.httpClient.request<ExecuteRun200Response>('post', `${this.configuration.basePath}${localVarPath}`,
+            {
+                context: localVarHttpContext,
+                body: executeRunRequest,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

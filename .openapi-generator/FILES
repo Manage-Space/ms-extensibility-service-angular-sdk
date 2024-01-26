@@ -10,6 +10,13 @@ index.ts
 model/badRequestError400Response.ts
 model/badRequestError400ResponseError.ts
 model/baseError.ts
+model/createExtensibilityFunction200Response.ts
+model/createExtensibilityFunctionRequestDto.ts
+model/executeRun200Response.ts
+model/executeRunFunctionResponse.ts
+model/executeRunRequest.ts
+model/extensibilityFunctionRequest.ts
+model/extensibilityFunctionResponse.ts
 model/forbiddenError403Response.ts
 model/forbiddenError403ResponseError.ts
 model/import200Response.ts
